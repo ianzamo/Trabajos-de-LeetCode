@@ -1,0 +1,31 @@
++--------------+---------+
+| Nombre de columna | Tipo |
++--------------+---------+
+| personId | int |
+| apellido | varchar |
+| Nombre | varchar |
++--------------+---------+
+personId es la clave principal (columna con valores únicos) de esta tabla.
+Esta tabla contiene información sobre el ID de algunas personas y sus nombres y apellidos.
+
+Mesa:Address
++--------------+---------+
+| Nombre de columna | Tipo |
++--------------+---------+
+| direcciónId | int |
+| personId | int |
+| ciudad | varchar |
+| estado | varchar |
++--------------+---------+
+addressId es la clave principal (columna con valores únicos) para esta tabla.
+Cada fila de esta tabla contiene información sobre la ciudad y el estado de una persona con ID = PersonId.
+ 
+- Escriba una solución para indicar el nombre, apellido, ciudad y estado de cada persona en la Persontabla. Si la dirección de a personIdno aparece en la Addresstabla, indíquela null.
+- Devuelve la tabla de resultados en cualquier orden .
+
+Resolucion: 
+
+select Person.firstName, Person.lastName, Address.city, Address.state
+from Person
+
+left join Address ON Person.personId = Address.personId
