@@ -1,0 +1,24 @@
++--------------+------+ 
+| Nombre de columna | Tipo | 
++--------------+------+ 
+| id | int | 
+| salario | int | 
++--------------+------+ 
+id es la clave principal (columna con valores únicos) de esta tabla. 
+Cada fila de esta tabla contiene información sobre el salario de un empleado.
+ 
+Escribe una solución para hallar el salario distinto más alto de la tabla. Si hay menos de salarios distintos, devuelve  .nthEmployeennull
+
+Resolucion:
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+    SET N = N - 1;
+
+    RETURN (
+            SELECT DISTINCT salary
+            FROM Employee
+            ORDER BY salary desc
+            LIMIT 1 OFFSET N
+        );
+END
