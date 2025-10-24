@@ -1,0 +1,19 @@
++--------------+------+ 
+| Nombre de columna | Tipo | 
++--------------+------+ 
+| id | int | 
+| salario | int | 
++--------------+------+ 
+id es la clave principal (columna con valores únicos) de esta tabla. 
+Cada fila de esta tabla contiene información sobre el salario de un empleado.
+ 
+Escribe una solución para hallar el segundo salario distinto más alto de la Employeetabla. Si no hay un segundo salario más alto, devuelve  null (return None in Pandas).
+
+Resolucion: 
+
+SELECT(
+    SELECT DISTINCT salary
+from Employee
+order by salary desc
+
+LIMIT 1 offset 1) AS SecondHighestSalary
