@@ -1,0 +1,22 @@
++--------------+---------+ 
+| Nombre de columna | Tipo | 
++--------------+---------+ 
+| id | int | 
+| nombre | varchar | 
+| id_del_arbitro | int | 
++--------------+---------+ 
+En SQL, id es la columna de clave principal de esta tabla. 
+Cada fila de esta tabla indica el id de un cliente, su nombre y el id del cliente que lo refirió.
+ 
+Encuentre los nombres de los clientes que son:
+
+referido por  cualquier cliente con  id != 2.
+No referido por ningún cliente.
+Devuelve la tabla de resultados en cualquier orden.
+
+Resolucion: 
+
+SELECT name
+FROM Customer 
+
+WHERE referee_id != 2 or  referee_id IS NULL
