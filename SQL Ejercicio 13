@@ -1,0 +1,26 @@
++-------------+---------+ 
+| Nombre de columna | Tipo | 
++-------------+---------+ 
+| nombre | varchar | 
+| continente | varchar | 
+| área | int | 
+| población | int | 
+| PIB | bigint | 
++-------------+---------+ 
+«nombre» es la clave primaria (columna con valores únicos) de esta tabla. 
+Cada fila de esta tabla proporciona información sobre el nombre de un país, el continente al que pertenece, su área, su población y su PIB.
+ 
+Un país es grande si:
+
+Tiene una superficie de al menos tres millones (es decir, ), o3000000 km2
+Tiene una población de al menos veinticinco millones (es decir, 25000000).
+Escribe una solución para encontrar el nombre, la población y el área de los países más grandes .
+
+Devuelve la tabla de resultados en cualquier orden .
+
+Resolucion: 
+
+SELECT name, population, area
+FROM World
+
+Where area >= 3000000 or population >= 25000000
