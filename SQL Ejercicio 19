@@ -1,0 +1,25 @@
+Mesa:Salary
++-------------+----------+ 
+| Nombre de columna | Tipo | 
++-------------+----------+ 
+| id | int | 
+| name | varchar | 
+| sex | ENUM | 
+| salary | int | 
++-------------+----------+ 
+id es la clave primaria (columna con valores únicos) de esta tabla. 
+La columna sex es un valor ENUM (categoría) de tipo ('m', 'f'). 
+La tabla contiene información sobre un empleado.
+ 
+Escriba una solución para intercambiar todos 'f'los 'm'valores (es decir, cambiar todos 'f'los valores a 'm'y viceversa) con una sola instrucción de actualización y sin tablas temporales intermedias.
+
+Tenga en cuenta que debe escribir una única instrucción UPDATE; no escriba ninguna instrucción SELECT para este problema.
+
+Resolucion: 
+
+UPDATE Salary 
+
+SET sex = CASE
+    WHEN sex = 'f' THEN 'm'
+    ELSE 'f'
+    END
