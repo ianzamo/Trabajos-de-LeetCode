@@ -1,0 +1,28 @@
+Tabla:Activity
++--------------+---------+
+| Nombre de columna | Tipo |
++--------------+---------+
+| player_id | int |
+| device_id | int |
+| event_date | date |
+| games_played | int |
++--------------+---------+
+(player_id, event_date) es la clave principal (combinación de columnas con valores únicos) de esta tabla.
+Esta tabla muestra la actividad de los jugadores de algunos juegos
+Cada fila es un registro de un jugador que inició sesión y jugó una cantidad de juegos (posiblemente 0) antes de cerrar sesión algún día usando algún dispositivo.
+
+Escriba una solución para informar la fracción de jugadores que volvieron a iniciar sesión al día siguiente del día en que iniciaron sesión por primera vez, 
+redondeada a 2 decimales . En otras palabras, necesita determinar el número de jugadores que iniciaron sesión el día inmediatamente posterior a su inicio de sesión inicial 
+y dividirlo por el número total de jugadores.
+
+Resolucion: 
+
+SELECT
+  ROUND(COUNT(DISTINCT player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS fraction
+FROM
+  Activity
+WHERE
+  (player_id, DATE_SUB(event_date, INTERVAL 1 DAY))
+  IN (
+    SELECT player_id, MIN(event_date) AS first_login FROM Activity GROUP BY player_id
+  )
