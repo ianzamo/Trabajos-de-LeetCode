@@ -1,0 +1,45 @@
+Tabla:Trips
++-------------+----------+
+| Nombre de columna | Tipo |
++-------------+----------+
+| id | int |
+| client_id | int |
+| driver_id | int |
+| city_id | int |
+| status | enum |
+| request_at | varchar |     
++-------------+----------+
+Status es un tipo ENUM (categoría) de ('completed', 'cancelled_by_driver', 'cancelled_by_client').
+
+Tabla:Users
++-------------+----------+
+| Nombre de columna | Tipo |
++-------------+----------+
+| users_id | int |
+| banned | enum |
+| role | enum |
++-------------+----------+
+La tabla contiene todos los usuarios. Cada usuario tiene un users_id único, y role es un tipo ENUM de ('client', 'driver', 'partner').
+banned es un tipo ENUM (categoría) de ('Yes', 'No').
+
+La tasa de cancelación se calcula dividiendo el número de solicitudes canceladas (por el cliente o el conductor) con usuarios no bloqueados entre el número total de
+solicitudes con usuarios no bloqueados ese día
+
+Escriba una solución para encontrar la tasa de cancelación de solicitudes con usuarios no bloqueados ( tanto el cliente como el conductor no deben estar bloqueados)
+cada día entre "2013-10-01"y "2013-10-03"con al menos un viaje. Redondee Cancellation Ratea dos decimales .
+
+Resolucion: 
+
+SELECT d.name AS Department,
+       e.name AS Employee,
+       e.Salary AS Salary
+
+FROM Employee e
+JOIN Department d
+ON e.departmentId = d.id
+
+WHERE e.Salary = (
+    SELECT MAX(salary)
+    FROM Employee
+    WHERE departmentId = e.departmentId
+)
