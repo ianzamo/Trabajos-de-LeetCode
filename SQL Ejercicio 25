@@ -1,0 +1,25 @@
+Tabla:Employee
++-------------+---------+
+| Nombre de columna | Tipo |
++-------------+---------+
+| id | int |
+| nombre | varchar |
+| departamento | varchar |
+| managerId | int |
++-------------+---------+
+id es la clave principal (columna con valores únicos) de esta tabla.
+Cada fila de esta tabla indica el nombre de un empleado, su departamento y el id de su gerente.
+Si managerId es nulo, el empleado no tiene gerente.
+Ningún empleado será su propio gerente.
+ 
+Escriba una solución para encontrar gerentes con al menos cinco subordinados directos.
+
+Resolucion: 
+
+SELECT e.name
+FROM Employee e
+JOIN Employee e2
+ON e.id = e2.managerId
+
+GROUP BY e2.managerId
+HAVING count(*) >=5
