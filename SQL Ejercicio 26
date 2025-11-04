@@ -1,0 +1,49 @@
+Mesa:Insurance
+
++-------------+-------+ 
+| Nombre de la columna | Tipo | 
++-------------+-------+ 
+| pid | int | 
+| tiv_2015 | float | 
+| tiv_2016 | float | 
+| lat | float | 
+| lon | float | 
++-------------+-------+ 
+pid es la clave primaria (columna con valores únicos) de esta tabla. 
+Cada fila de esta tabla contiene información sobre una póliza, donde: 
+pid es el ID de la póliza del titular. 
+tiv_2015 es el valor total de la inversión en 2015 y tiv_2016 es el valor total de la inversión en 2016. 
+lat es la latitud de la ciudad del titular. Se garantiza que lat no es nula. 
+lon es la longitud de la ciudad del titular. Se garantiza que lon no es nula.
+ 
+Escriba una solución para informar la suma de todos los valores totales de inversión en 2016 tiv_2016, para todos los asegurados que:
+
+Tengan el mismo tiv_2015 que uno o más asegurados, y
+no se encuentran en la misma ciudad que ningún otro asegurado (es decir, los lat, lonpares de atributos ( ) deben ser únicos).
+
+Redondea tiv_2016a dos decimales .
+
+Resolucion: 
+
+WITH same_tiv_2015 AS (
+    
+    SELECT tiv_2015
+    FROM Insurance
+
+    GROUP BY tiv_2015
+    HAVING COUNT(*) > 1
+),
+
+unique_location AS (
+
+    SELECT lat,lon 
+    FROM Insurance
+
+    GROUP BY lat, lon
+    HAVING COUNT(*) = 1
+)
+
+SELECT ROUND(SUM(tiv_2016),2) AS tiv_2016
+FROM Insurance i
+WHERE i.tiv_2015 IN (SELECT tiv_2015 FROM same_tiv_2015)
+AND (i.lat, i.lon) IN (SELECT lat, lon FROM unique_location)
