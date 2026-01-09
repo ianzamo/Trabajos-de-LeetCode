@@ -1,0 +1,43 @@
+nombre = "admin"
+contraseña = "uni123" 
+
+nombre_usuario = input("Ingrese el nombre de usuario: ")
+contraseña_usuario = input("Ingrese la contraseña: ")
+
+if (nombre_usuario == nombre and contraseña == contraseña_usuario):
+    print("\nHas ingresado al sistema correctamente.")
+    message = """\nIngrese el numero de la operacion que desea ejecutar:
+    1 - Añadir un alumno a la lista.
+    2 - Ver la lista de alumnos.
+    3 - Salir.
+    """
+
+    response = int(input(message))
+    student_list = []
+    while True:
+
+            if (response == 1): 
+                name_student = input("Ingrese el nombre del alumno: ")
+                courses_student = int(input("Ingrese la cantidad de cursos: "))
+                print("\nEl alumno fue añadido a la lista!")
+                student_list.append([name_student, courses_student])
+
+                response = int(input(message))
+
+            elif (response == 2):
+                print("Lista de alumnos:")
+                for i in student_list:
+                    print(i[0], "-",i[1], "cursos")
+
+                response = int(input(message))
+            
+            elif (response == 3): 
+                print("\n¡Gracias por utilizar el programa!\n")
+                break
+            else: 
+                print("La opción ingresada no es correcta, vuelva a intentarlo.")
+
+                response = int(input(message))
+
+else: 
+    print("Usuario y/o contraseña incorrecta.")
