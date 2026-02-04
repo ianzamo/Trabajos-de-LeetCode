@@ -1,1 +1,24 @@
+"""" Ejercico 1: 
 
+def numero_entero():
+
+    x = input("Ingrese un numero: ")
+
+    while not x.isdecimal():
+        x = input("El numero es incorrecto, vuelva a ingresar otro: ")    
+
+    x = int(x)
+    return x
+
+print("El numero",numero_entero(),"es correcto.")
+
+Ejercicio 2: """
+
+def area_rectangulo(base,altura):
+    area = base*altura
+    return area
+
+base = int(input("Ingrese la altura del rectangulo: "))
+altura = int(input("Ahora ingrese la altura: "))
+
+print("El area del rectangulo es", area_rectangulo(base,altura))
